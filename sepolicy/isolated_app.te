@@ -1,0 +1,1 @@
+allow isolated_app tombstone_data_file:dir search;

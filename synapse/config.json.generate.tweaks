@@ -1,0 +1,54 @@
+#!/system/xbin/busybox_synapse sh
+
+BB=/system/xbin/busybox_synapse;
+
+cat << CTAG
+{
+	name:Tweaks,
+		elements:[
+			{ SPane:{
+				title:"build.prop Tweaks",
+				description:"A value of -1 on any of the following settings means that setting was not found in your build.prop file.",
+			}},
+				{ SSeekBar:{
+					title:"Wifi Scan Interval",
+					description:"Set the interval on which on wifi will scan for channels. Setting this to a higher value will save battery.",
+					unit:" sec",
+					min:-1,
+					max:300,
+					step:1,
+					default:45,
+					action:"buildprop wifi.supplicant_scan_interval",
+				}},
+				{ SSeekBar:{
+					title:"VM Heapsize",
+					description:"Set the maximum amount of heapsize (memory) a single instance of the Dalvik Virtual Machine (application) can obtain.",
+					unit:" MB",
+					min:-1,
+					max:1024,
+					step:1,
+					default:512,
+					action:"buildprop dalvik.vm.heapsize",
+				}},
+				{ SCheckBox:{
+					label:"Allow purging of assets",
+					description:"Purging of bitmap memory assets allows the freeing of more RAM when needed.",
+					default:0,
+					action:"buildprop persist.sys.purgeable_assets",
+				}},
+			{ SPane:{
+				title:"ADB over WIFI"
+			}},
+				{ SGeneric:{
+					title:"Device HostName",
+					default:`getprop net.hostname 2> /dev/null`,
+					action:"buildprop net.hostname",
+				}},
+				{ SGeneric:{
+					title:"Wireless Port",
+					default:`getprop service.adb.tcp.port`,
+					action:"buildprop service.adb.tcp.port",
+				}},
+		]
+}
+CTAG

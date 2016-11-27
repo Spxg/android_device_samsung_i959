@@ -1,0 +1,58 @@
+#
+# system.prop for i959
+#
+
+## Bluetooth ##
+# The new CAF code defaults to MCT HAL, but we
+# need the old H4 HAL for our Broadcom WiFi.
+PRODUCT_PROPERTY_OVERRIDES += \
+    qcom.bluetooth.soc=rome
+# SHIP
+ro.product_ship=true
+ro.csc.sales_code=CTC
+ro.arch=exynos5410
+ro.chipname=exynos5410
+ro.product.locale.language=zh
+ro.product.locale.region=CN
+
+
+## Graphics ##
+
+# Disable GL Library Preload
+ro.zygote.disable_gl_preload=1
+
+# Disable HDCP by default
+persist.hdmi.hdcp_enabled=false
+persist.sys.hdcp_checking=never
+
+## NFC ##
+
+# Reduce Debug Level
+nfc.app_log_level=0
+
+
+
+## Radio ##
+
+# Samsung RIL Config
+rild.libargs=-d /dev/ttyS0
+rild.libpath=/system/lib/libsec-ril.so
+
+ro.telephony.ril_class=SamsungQualcommRIL
+ro.ril.hsxpa=1
+ro.ril.gprsclass=10
+#persist.radio.networktype=4
+ro.telephony.default_network=1,4
+telephony.lteOnCdmaDevice=0
+ro.telephony.lteOnCdmaDevice=0
+keyguard.no_require_sim=true
+persist.radio.multisim.config=dsds
+ro.multisim.simslotcount=2
+ro.multisim.samsung=true
+
+
+
+## Screen ##
+
+# 1080p Screen Density
+ro.sf.lcd_density=480

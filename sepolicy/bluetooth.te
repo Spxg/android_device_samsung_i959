@@ -1,0 +1,9 @@
+# /dev/ttySAC0
+allow bluetooth bluetooth_device:chr_file { rw_file_perms ioctl };
+
+# /data/.cid.info
+allow bluetooth wifi_data_file:file r_file_perms;
+
+allow bluetooth btlock_device:chr_file { write open };
+allow bluetooth gps_device:chr_file { ioctl open };
+allow bluetooth sysfs:file write;

@@ -1,0 +1,49 @@
+#!/system/xbin/busybox_synapse sh
+
+BB=/system/xbin/busybox_synapse;
+
+cat << CTAG
+{
+    name:GPU,
+    elements:[
+        { SPane:{
+		title:"GPU scaling settings",
+		description:"By editing the following configurables you can change the performance behaviour of the GPU."
+        }},
+	{ SSeekBar:{
+       		title:"GPU max freq",
+		description:"Set the maximum freqency the GPU scales up to.",
+		default:532,
+                unit:"MHz",
+		action:"generic /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_max_lock",
+		values:[
+532,
+480,
+350,
+266,
+177,
+    ]
+	}},
+	{ SSeekBar:{
+       		title:"GPU min freq",
+		description:"Set the minimum freqency the GPU scales down to.",
+		default:177,
+                unit:"MHz",
+		action:"generic /sys/devices/platform/pvrsrvkm.0/sgx_dvfs_min_lock",
+		values:[
+532,
+480,
+350,
+266,
+177,
+    ]
+	}},
+	{ SCheckBox:{
+		description:"If enabled, the GPU ignores the normal DVFS policies and voltages, and uses hard-coded entries when waking out of clock-gating. The respective lock is 266MHz and 900mV.",
+		label:"GPU wakeup state locking",
+		default:1,
+                action:"generic /sys/module/pvrsrvkm/parameters/sec_wakeup_lock_state"
+	}},
+    ]
+}
+CTAG

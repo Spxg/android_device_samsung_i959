@@ -1,0 +1,86 @@
+BB=/system/xbin/busybox_synapse;
+
+TIMESTAMP=`date +%Y-%m-%d.%H.%M.%S`;
+LOGS=/sdcard/logs;
+
+case $1 in
+	qhdres)
+		wm size 540x960;
+		wm density 240;
+	;;
+	hdres)
+		wm size 720x1280;
+		wm density 320;
+	;;
+	fullhdres)
+		wm size 1080x1920;
+		wm density 480;
+	;;
+	quadhdres)
+		wm size 1440x2560;
+		wm density 560;
+	;;
+	optimizedb)
+		for i in `$BB find /data -iname "*.db"`; do 
+			/res/synapse/sqlite3 $i 'VACUUM;' 2> /dev/null;
+			/res/synapse/sqlite3 $i 'REINDEX;' 2> /dev/null;
+		done;
+
+		for i in `$BB find /sdcard -iname "*.db"`; do
+			/res/synapse/sqlite3 $i 'VACUUM;' 2> /dev/null;
+			/res/synapse/sqlite3 $i 'REINDEX;' 2> /dev/null;
+		done;
+		
+		$BB echo "Databases have been optimized.";
+	;;
+	logcat)
+		saved="$LOGS/logcat-$TIMESTAMP.txt";
+		[ ! -d "$LOGS" ] && $BB mkdir -p "$LOGS";
+		$BB chmod 755 $LOGS;
+		
+		logcat -d > $saved;
+	;;
+	dmesg)
+		saved="$LOGS/dmesg-$TIMESTAMP.txt";
+		[ ! -d "$LOGS" ] && $BB mkdir -p "$LOGS";
+		$BB chmod 755 $LOGS;
+		
+		$BB dmesg > $saved;
+	;;
+	kmsg)
+		kmsg=/proc/last_kmsg;
+		if [ -f $kmsg ]; then
+			saved="$LOGS/last_kmsg-$TIMESTAMP.txt";
+			[ ! -d "$LOGS" ] && $BB mkdir -p "$LOGS";
+			$BB chmod 755 $LOGS;
+			
+			$BB cp -f $kmsg $saved;
+		else
+			$BB echo "$kmsg not found.";
+		fi;
+	;;
+	reboot)
+		$BB sleep 1;
+		reboot $2;
+	;;
+	cleardata)
+		am force-stop com.af.synapse 2> /dev/null;
+		$BB sleep 1;
+		$BB rm -R /data/data/com.af.synapse/databases;
+		$BB sleep 1;
+		am start -a android.intent.action.MAIN -n com.af.synapse/.MainActivity 2> /dev/null;
+	;;
+	restart)
+		am force-stop com.af.synapse 2> /dev/null;
+		$BB sleep 1;
+		reset_uci;
+		$BB sleep 1;
+		am start -a android.intent.action.MAIN -n com.af.synapse/.MainActivity 2> /dev/null;
+	;;
+esac;
+
+case $1 in
+	logcat|dmesg|kmsg)
+		$BB echo "Logfile saved to $saved";
+	;;
+esac;

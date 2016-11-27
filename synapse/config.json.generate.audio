@@ -1,0 +1,132 @@
+#!/system/xbin/busybox_synapse sh
+
+BB=/system/xbin/busybox_synapse;
+
+cat << CTAG
+{
+    name:Audio,
+    elements:[
+	{ SPane:{ 
+		title:"Speaker Amplification",
+		description:"Speaker amplification increases volume on the external speaker and earpiece. Speaker volumes are expressed as deltas to Samsung's audio profiles, so not to completely override them."
+	}},
+	{ SSeekBar:{
+		description:"Main speaker volume",
+		min:-8, max:16, unit:"dB", weight:0.5,
+		default:0,
+                action:"generic /sys/class/misc/wolfson_control/speaker_volume"
+	}},
+	{ SSeekBar:{
+		description:"Earpiece volume",
+		min:-8, max:16, unit:"dB", weight:0.5,
+		default:0,
+                action:"generic /sys/class/misc/wolfson_control/earpiece_volume"
+	}},
+	{ SCheckBox:{
+		description:"Disables the main speaker when audio is outputted via headphones; all audio routed to the speaker is disabled (!!!).",
+		label:"Privacy mode",
+		default:0,
+                action:"generic /sys/class/misc/wolfson_control/switch_sp_privacy"
+	}},
+
+	{ SPane:{ 
+		title:"HP Equalizer settings",
+		description:"Controls the hardware equalizer."
+	}},
+	{ SCheckBox:{
+		description:"Enables mono output",
+		label:"Mono mixer",
+		default:0,
+                action:"generic /sys/class/misc/wolfson_control/switch_hp_mono"
+	}},
+	{ SCheckBox:{
+		description:"Enable headphone equalizer for gain controls.",
+		label:"Enable headphone equalizer",
+		default:0,
+                action:"generic /sys/class/misc/wolfson_control/switch_eq_headphone"
+	}},
+	{ SSeekBar:{
+		title:"Band 1 gain",
+		description:"Cutoff-frequency: 96Hz",
+		min:-12, max:12, unit:"dB",
+		default:0,
+                action:"generic /sys/class/misc/wolfson_control/eq_hp_gain_1"
+	}},
+	{ SSeekBar:{
+		title:"Band 2 gain",
+		description:"Center-frequency: 273Hz, bandwidth: 551Hz",
+		min:-12, max:12, unit:"dB",
+		default:0,
+                action:"generic /sys/class/misc/wolfson_control/eq_hp_gain_2"
+	}},
+	{ SSeekBar:{
+		title:"Band 3 gain",
+		description:"Center-frequency: 784Hz, bandwidth: 1560Hz",
+		min:-12, max:12, unit:"dB",
+		default:0,
+                action:"generic /sys/class/misc/wolfson_control/eq_hp_gain_3"
+	}},
+	{ SSeekBar:{
+		title:"Band 4 gain",
+		description:"Center-frequency: 2206Hz, bandwidth: 4409Hz",
+		min:-12, max:12, unit:"dB",
+		default:0,
+                action:"generic /sys/class/misc/wolfson_control/eq_hp_gain_4"
+	}},
+	{ SSeekBar:{
+		title:"Band 5 gain",
+		description:"Cutoff-frequency: 6340Hz",
+		min:-12, max:12, unit:"dB",
+		default:0,
+                action:"generic /sys/class/misc/wolfson_control/eq_hp_gain_5"
+	}},
+
+
+	{ SPane:{ 
+		title:"SP Equalizer settings",
+		description:"Controls the hardware equalizer."
+	}},
+	{ SCheckBox:{
+		description:"Enable speaker equalizer for gain controls.",
+		label:"Enable speaker equalizer",
+		default:1,
+                action:"generic /sys/class/misc/wolfson_control/switch_eq_speaker"
+	}},
+	{ SSeekBar:{
+		title:"Band 1 gain",
+		description:"Cutoff-frequency: 160Hz",
+		min:-12, max:12, unit:"dB",
+		default:-5,
+                action:"generic /sys/class/misc/wolfson_control/eq_sp_gain_1"
+	}},
+	{ SSeekBar:{
+		title:"Band 2 gain",
+		description:"Center-frequency: 500Hz, bandwidth: 1050Hz",
+		min:-12, max:12, unit:"dB",
+		default:1,
+                action:"generic /sys/class/misc/wolfson_control/eq_sp_gain_2"
+	}},
+	{ SSeekBar:{
+		title:"Band 3 gain",
+		description:"Center-frequency: 2800Hz, bandwidth: 2200Hz",
+		min:-12, max:12, unit:"dB",
+		default:0,
+                action:"generic /sys/class/misc/wolfson_control/eq_sp_gain_3"
+	}},
+	{ SSeekBar:{
+		title:"Band 4 gain",
+		description:"Center-frequency: 7600Hz, bandwidth: 4500Hz",
+		min:-12, max:12, unit:"dB",
+		default:4,
+                action:"generic /sys/class/misc/wolfson_control/eq_sp_gain_4"
+	}},
+	{ SSeekBar:{
+		title:"Band 5 gain",
+		description:"Cutoff-frequency: 20000Hz",
+		min:-12, max:12, unit:"dB",
+		default:3,
+                action:"generic /sys/class/misc/wolfson_control/eq_sp_gain_5"
+	}}
+    ]
+}
+CTAG

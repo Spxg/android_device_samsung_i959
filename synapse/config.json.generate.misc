@@ -1,0 +1,89 @@
+#!/system/xbin/busybox_synapse sh
+
+BB=/system/xbin/busybox_synapse;
+
+cat << CTAG
+{
+	name:Miscellaneous,
+		elements:[
+			`if [ -f "/sys/kernel/mm/ksm/run" ]; then
+			KSM=\`$BB cat /sys/kernel/mm/ksm/run\`
+			PTS=\`$BB cat /sys/kernel/mm/ksm/pages_to_scan\`
+			SLEEP=\`$BB cat /sys/kernel/mm/ksm/sleep_millisecs\`
+				$BB echo '{ SPane:{
+					title:"Kernel Samepage Merging"
+				}},
+					{ SCheckBox:{
+						label:"Enable",
+						description:"KSM lets the hypervisor system share identical memory pages amongst different processes or virtualized guests. This increases CPU consumption but improves memory.",
+						default:0,
+						action:"generic /sys/kernel/mm/ksm/run"
+					}},'
+					if [ -f "/sys/kernel/mm/ksm/deferred_timer" ]; then
+					DT=\`$BB cat /sys/kernel/mm/ksm/deferred_timer\`
+						$BB echo '{ SCheckBox:{
+							label:"Deferred Timer",
+							description:"If enabled, KSM thread will not wakeup CPU to carryout activities thus gaining battery while compromising slightly on memory that could have been saved.",
+							default:'$DT',
+							action:"generic /sys/kernel/mm/ksm/deferred_timer"
+						}},'
+					fi
+					$BB echo '{ SSeekBar:{
+						title:"Pages To Scan",
+						unit:" pages",
+						step:1,
+						min:1,
+						max:1024,
+						default:'$PTS',
+						action:"generic /sys/kernel/mm/ksm/pages_to_scan"
+					}},
+					{ SSeekBar:{
+						title:"Scan Delay Interval",
+						unit:" ms",
+						step:50,
+						min:50,
+						max:3000,
+						default:'$SLEEP',
+						action:"generic /sys/kernel/mm/ksm/sleep_millisecs"
+					}},'
+			fi`
+			`if [ -f "/sys/kernel/sched/gentle_fair_sleepers" ]; then
+			GFS=\`$BB cat /sys/kernel/sched/gentle_fair_sleepers\`
+			
+				$BB echo '{ SPane:{
+					title:"Gentle Fair Sleepers"
+				}},
+					{ SCheckBox:{
+						label:"Enable",
+						description:"Sleeper Fairness is a concept used by CFS which treat sleeping/waiting tasks as if they were in a run queue. This implies tasks which spend most of the time waiting for an user input and such will get a fair share of CPU when they need it. Disabling Gentle Fair Sleepers could improve UI responsiveness.",
+						default:0,
+						action:"generic /sys/kernel/sched/gentle_fair_sleepers"
+					}},'
+			fi`
+			`if [ -f "/sys/kernel/sched/arch_power" ]; then
+			APOWER=\`$BB cat /sys/kernel/sched/arch_power\`
+				$BB echo '{ SPane:{
+					title:"Arch Power"
+				}},
+					{ SCheckBox:{
+						label:"Enable",
+						description:"Arch Power uses arch dependent power functions to be used instead of generic high resolution timer ticks and double ticks to reflect the relative capacity of each core.",
+						default:'$APOWER',
+						action:"generic /sys/kernel/sched/arch_power"
+					}},'
+			fi`
+			`if [ -f "/sys/module/wakeup/parameters/enable_l2_hsic_ws" ]; then
+			L2HSIC=\`bool /sys/module/wakeup/parameters/enable_l2_hsic_ws\`
+				$BB echo '{ SPane:{
+					title:"RIL Wakelock aka l2_hsic"
+				}},
+					{ SCheckBox:{
+						label:"Enable",
+						description:"Disable to fix battery drain caused by l2_hsic wakelocks. Disable at your own risk, could introduce random reboots.",
+						default:1,
+						action:"boolean /sys/module/wakeup/parameters/enable_l2_hsic_ws"
+					}},'
+			fi`
+		]
+}
+CTAG

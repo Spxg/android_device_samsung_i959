@@ -1,0 +1,6 @@
+allow servicemanager init:dir search;
+allow servicemanager init:file { read open };
+allow servicemanager init:process getattr;
+allow servicemanager sensorhubservice:dir search;
+allow servicemanager sensorhubservice:file { read open };
+allow servicemanager sensorhubservice:process getattr;

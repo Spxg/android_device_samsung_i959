@@ -1,0 +1,15 @@
+BB=/system/xbin/busybox_synapse;
+
+if [ -f $1 ]; then
+	if [[ ! -z $2 ]]; then
+		$BB echo "$2" > $1 2> /dev/null;
+	fi;
+
+	if [ "`$BB grep enabled $1`" ]; then
+		$BB echo "1";
+	else
+		$BB echo "0";
+	fi;
+else
+	$BB echo "0";
+fi;

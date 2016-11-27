@@ -1,0 +1,82 @@
+#!/system/xbin/busybox_synapse sh
+
+BB=/system/xbin/busybox_synapse;
+
+cat << CTAG
+{
+    name:"CPUFreq Governor",
+    elements:[
+	{ SPane:{
+		title:"Governor"
+        }},
+        { SOptionList:{
+		title:"Current governor",
+		description:"The governor in charge of CPUFreq scaling",
+                default:"ondemand",
+                action:"governor /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
+                values:[
+`
+                        for GOVERNOR in \`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors\` ; do
+                                echo "\"$GOVERNOR\","
+                        done
+`
+                ],
+		notify:[
+			{
+				on:APPLY,
+				do:[ REFRESH, CANCEL ],
+				to:"/sys/devices/system/cpu/cpufreq"
+			},
+			{
+				on:REFRESH,
+				do:REFRESH,
+				to:"/sys/devices/system/cpu/cpufreq"
+			}
+		]
+        }},
+	{ SPane:{
+		title:"Governor tunables",
+		description:"The various configuration items which are governor-dependent."
+        }},
+	{ STreeDescriptor:{
+		path:"/sys/devices/system/cpu/cpufreq",
+		generic: {
+			directory: {
+				STreeDescriptor:{
+					generic: {
+						directory: {},
+						element: {
+							SGeneric: { title:"@NAME" }
+						}
+					},
+					matched: {
+						elements: [
+							{ "sampling_rate" : {
+								SSeekBar: {
+									title:"Sampling rate",
+									description:"The sampling rate controls the frequency in which the governor polls for frequency changes.",
+									min:10000, max:100000, step:10000, unit:"ms"
+								}
+							}},
+							{ "sampling_rate_min" : {
+								SSeekBar: {
+									title:"Minimum Sampling rate",
+									description:"The sampling rate controls the frequency in which the governor polls for frequency changes.",
+									min:10000, max:100000, step:10000, unit:"ms"
+								}
+							}}
+						]
+					},
+					exclude: [
+						"cpu_utilization",
+						"up_threshold_h",
+						"up_threshold_l"
+					]
+				}
+			}
+		},
+		exclude: [ "ondemand-sec", "iks-cpufreq" ]
+	}},
+    ]
+}
+CTAG

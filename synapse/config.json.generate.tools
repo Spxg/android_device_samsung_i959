@@ -1,0 +1,66 @@
+#!/system/xbin/busybox_synapse sh
+
+BB=/system/xbin/busybox_synapse;
+
+cat << CTAG
+{
+	name:Tools,
+		elements:[
+			{ SPane:{
+				title:"Advanced Tools"
+			}},
+				{ SDescription:{
+					description:"Use this button to defrag/reindex all databases found in /data & /sdcard, this increases database read/write performance. NOTE: This process can take from 1-2 minutes."
+				}},
+				{ SButton:{
+					label:"Optimize Databases",
+					action:"devtools optimizedb"
+				}},
+			{ SPane:{
+				title:"Log Creation"
+			}},
+			{ SDescription:{
+				description:"Save the logcat (App/system debug), dmesg (active kernel output) or last_ksmg (same as dmesg but from the last shutdown)."
+			}},
+				{ SButton:{
+					label:"Save logcat",
+					action:"devtools logcat"
+				}},
+				{ SButton:{
+					label:"Save dmesg",
+					action:"devtools dmesg"
+				}},
+				{ SButton:{
+					label:"Save last_kmsg",
+					action:"devtools kmsg"
+				}},
+			{ SPane:{
+				title:"General Actions",
+				description:"To update/refresh lists, select Restart Synapse below. To clear data, select Clear Synapse Data (fixes most common issues)."
+			}},
+				{ SButton:{
+					label:"Restart Synapse",
+					action:"devtools restart"
+				}},
+				{ SButton:{
+					label:"Clear Synapse Data",
+					action:"devtools cleardata"
+				}},
+			{ STitleBar:{
+				title:"Reboot"
+			}},
+				{ SButton:{
+					label:"Reboot Device",
+					action:"devtools reboot"
+				}},
+				{ SButton:{
+					label:"Reboot to Recovery",
+					action:"devtools reboot recovery"
+				}},
+				{ SButton:{
+					label:"Reboot to Bootloader",
+					action:"devtools reboot bootloader"
+				}}
+		]
+}
+CTAG

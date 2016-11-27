@@ -1,0 +1,3 @@
+add_lunch_combo cm_i959-user
+add_lunch_combo cm_i959-userdebug
+add_lunch_combo cm_i959-eng

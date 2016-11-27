@@ -1,0 +1,39 @@
+audit(0.453:1): initialized
+audit(1468162655.656:11): policy loaded auid=4294967295 ses=4294967295
+audit(1468162657.210:12): audit_pid=2625 old=0 auid=4294967295 ses=4294967295 subj=u:r:logd:s0 res=1
+audit(1468162657.210:13): audit_rate_limit=20 old=0 auid=4294967295 ses=4294967295 subj=u:r:logd:s0 res=1
+audit(1468162657.800:14): avc:  denied  { read write } for  pid=2756 comm="sh" name="ttySAC2" dev="tmpfs" ino=4452 scontext=u:r:shell:s0 tcontext=u:object_r:gps_device:s0 tclass=chr_file permissive=1
+audit(1468162657.800:14): arch=40000028 syscall=11 per=800000 success=yes exit=0 a0=b6de568b a1=b6ebd4f8 a2=b1f74 a3=0 items=2 ppid=1 ppcomm=init pid=2756 auid=4294967295 uid=2000 gid=2000 euid=2000 suid=2000 fsuid=2000 egid=2000 sgid=2000 fsgid=2000 tty=ttySAC2 ses=4294967295 comm="sh" exe="/system/bin/sh" subj=u:r:shell:s0 key=(null)
+audit(1468162657.800:14): argc=1 a0="/system/bin/sh"
+audit(1468162657.800:14):  cwd="/"
+audit(1468162657.800:14): item=0 name="/system/bin/sh" inode=120832 dev=103:0c mode=0100755 ouid=0 ogid=2000 rdev=00:00 obj=u:object_r:shell_exec:s0
+audit(1468162657.800:14): item=1 name=(null) inode=120777 dev=103:0c mode=0100755 ouid=0 ogid=2000 rdev=00:00 obj=u:object_r:system_file:s0
+audit(1468162657.870:15): avc:  denied  { mknod } for  pid=2764 comm="cbd" capability=27  scontext=u:r:cpboot-daemon:s0 tcontext=u:r:cpboot-daemon:s0 tclass=capability permissive=1
+audit(1468162657.870:15): arch=40000028 syscall=324 per=800000 success=yes exit=0 a0=ffffff9c a1=45d1d a2=2180 a3=10b items=2 ppid=1 ppcomm=init pid=2764 auid=4294967295 uid=0 gid=1001 euid=0 suid=0 fsuid=0 egid=1001 sgid=1001 fsgid=1001 tty=(none) ses=4294967295 comm="cbd" exe="/system/bin/cbd" subj=u:r:cpboot-daemon:s0 key=(null)
+audit(1468162657.870:15):  cwd="/"
+audit(1468162657.870:15): item=0 name="dev/" inode=3494 dev=00:0c mode=040755 ouid=0 ogid=0 rdev=00:00 obj=u:object_r:device:s0
+audit(1468162657.870:15): item=1 name="dev/__cbd_msg_" inode=2349 dev=00:0c mode=020600 ouid=0 ogid=1001 rdev=01:0b obj=u:object_r:device:s0
+audit(1468162657.870:16): avc:  denied  { read write } for  pid=2764 comm="cbd" name="__cbd_msg_" dev="tmpfs" ino=2349 scontext=u:r:cpboot-daemon:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+audit(1468162657.870:16): avc:  denied  { open } for  pid=2764 comm="cbd" name="__cbd_msg_" dev="tmpfs" ino=2349 scontext=u:r:cpboot-daemon:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+audit(1468162657.870:16): arch=40000028 syscall=322 per=800000 success=yes exit=4 a0=ffffff9c a1=45d1d a2=20002 a3=0 items=1 ppid=1 ppcomm=init pid=2764 auid=4294967295 uid=0 gid=1001 euid=0 suid=0 fsuid=0 egid=1001 sgid=1001 fsgid=1001 tty=(none) ses=4294967295 comm="cbd" exe="/system/bin/cbd" subj=u:r:cpboot-daemon:s0 key=(null)
+audit(1468162657.870:16):  cwd="/"
+audit(1468162657.870:16): item=0 name="dev/__cbd_msg_" inode=2349 dev=00:0c mode=020600 ouid=0 ogid=1001 rdev=01:0b obj=u:object_r:device:s0
+audit(1468162658.203:17): avc:  denied  { write } for  pid=2764 comm="cbd" name="ehci_power" dev="sysfs" ino=13030 scontext=u:r:cpboot-daemon:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+audit(1468162658.203:17): arch=40000028 syscall=322 per=800000 success=yes exit=13 a0=ffffff9c a1=47902 a2=20002 a3=0 items=1 ppid=1 ppcomm=init pid=2764 auid=4294967295 uid=1001 gid=1001 euid=1001 suid=1001 fsuid=1001 egid=1001 sgid=1001 fsgid=1001 tty=(none) ses=4294967295 comm="cbd" exe="/system/bin/cbd" subj=u:r:cpboot-daemon:s0 key=(null)
+audit(1468162658.203:17):  cwd="/"
+audit(1468162658.203:17): item=0 name="/dev/ehci_power" inode=13030 dev=00:0d mode=0100664 ouid=0 ogid=0 rdev=00:00 obj=u:object_r:sysfs:s0
+audit(1468162658.313:18): avc:  denied  { write } for  pid=2756 comm="sh" path="/dev/ttySAC2" dev="tmpfs" ino=4452 scontext=u:r:shell:s0 tcontext=u:object_r:gps_device:s0 tclass=chr_file permissive=1
+audit(1468162658.313:18): arch=40000028 syscall=4 per=800008 success=yes exit=16 a0=2 a1=b6dd3284 a2=10 a3=394 items=0 ppid=1 ppcomm=init pid=2756 auid=4294967295 uid=2000 gid=2000 euid=2000 suid=2000 fsuid=2000 egid=2000 sgid=2000 fsgid=2000 tty=ttySAC2 ses=4294967295 comm="sh" exe="/system/bin/sh" subj=u:r:shell:s0 key=(null)
+audit(1468162658.313:19): avc:  denied  { read } for  pid=2756 comm="sh" path="/dev/ttySAC2" dev="tmpfs" ino=4452 scontext=u:r:shell:s0 tcontext=u:object_r:gps_device:s0 tclass=chr_file permissive=1
+audit(1468162658.680:20): avc:  denied  { write } for  pid=2765 comm="sensorhubservic" name="ssp_sensorhub" dev="tmpfs" ino=4214 scontext=u:r:sensorhubservice:s0 tcontext=u:object_r:sensors_device:s0 tclass=chr_file permissive=1
+audit(1468162658.680:20): arch=40000028 syscall=322 per=800008 success=yes exit=6 a0=ffffff9c a1=b6b7b53c a2=20002 a3=0 items=1 ppid=1 ppcomm=init pid=2765 auid=4294967295 uid=1000 gid=1004 euid=1000 suid=1000 fsuid=1000 egid=1004 sgid=1004 fsgid=1004 tty=(none) ses=4294967295 comm="sensorhubservic" exe="/system/bin/sensorhubservice" subj=u:r:sensorhubservice:s0 key=(null)
+audit(1468162658.680:20):  cwd="/"
+audit(1468162658.680:20): item=0 name="/dev/ssp_sensorhub" inode=4214 dev=00:0c mode=020660 ouid=1000 ogid=1000 rdev=0a:29 obj=u:object_r:sensors_device:s0
+audit(1468162684.646:217): avc:  denied  { write } for  pid=4225 comm="settings.device" name="scenario" dev="sysfs" ino=18473 scontext=u:r:system_app:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+audit(1468162684.646:217): arch=40000028 syscall=322 per=800008 success=yes exit=20 a0=ffffff9c a1=89ce7f20 a2=20241 a3=180 items=1 ppid=2766 ppcomm=main pid=4225 auid=4294967295 uid=1000 gid=1000 euid=1000 suid=1000 fsuid=1000 egid=1000 sgid=1000 fsgid=1000 tty=(none) ses=4294967295 comm="settings.device" exe="/system/bin/app_process32" subj=u:r:system_app:s0 key=(null)
+audit(1468162684.646:217):  cwd="/"
+audit(1468162684.646:217): item=0 name="/sys/class/mdnie/mdnie/scenario" inode=18473 dev=00:0d mode=0100664 ouid=1000 ogid=1000 rdev=00:00 obj=u:object_r:sysfs:s0
+audit(1468163621.015:358): avc:  denied  { write } for  pid=4225 comm="settings.device" name="scenario" dev="sysfs" ino=18473 scontext=u:r:system_app:s0 tcontext=u:object_r:sysfs:s0 tclass=file permissive=1
+audit(1468163621.015:358): arch=40000028 syscall=322 per=800008 success=yes exit=36 a0=ffffff9c a1=b1eac260 a2=20241 a3=180 items=1 ppid=2766 ppcomm=main pid=4225 auid=4294967295 uid=1000 gid=1000 euid=1000 suid=1000 fsuid=1000 egid=1000 sgid=1000 fsgid=1000 tty=(none) ses=4294967295 comm="settings.device" exe="/system/bin/app_process32" subj=u:r:system_app:s0 key=(null)
+audit(1468163621.015:358):  cwd="/"
+audit(1468163621.015:358): item=0 name="/sys/class/mdnie/mdnie/scenario" inode=18473 dev=00:0d mode=0100664 ouid=1000 ogid=1000 rdev=00:00 obj=u:object_r:sysfs:s0

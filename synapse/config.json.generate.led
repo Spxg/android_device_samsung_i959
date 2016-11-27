@@ -1,0 +1,104 @@
+#!/system/xbin/busybox_synapse sh
+
+BB=/system/xbin/busybox_synapse;
+
+cat << CTAG
+{
+    name:LEDs,
+    elements:[
+	{ SPane:{ 
+		title:"Brightness",
+		description:"The notification LED has two brightness modes, depending on the external brightness detected by the light sensor."
+	}},
+	{ SSeekBar:{
+		title:"Low light environment brightness",
+		min:1, max:120, unit:"mA", weight:0.125,
+		default:`cat /sys/class/sec/led/led_lowpower_current`,
+                action:"generic /sys/class/sec/led/led_lowpower_current"
+	}},
+	{ SSeekBar:{
+		title:"Bright light environment brightness",
+		min:1, max:120, unit:"mA", weight:0.125,
+		default:`cat /sys/class/sec/led/led_highpower_current`,
+                action:"generic /sys/class/sec/led/led_highpower_current"
+	}},
+
+
+
+
+	{ SPane:{ 
+		title:"Blinking effect",
+		description:"Control the way the LED blinks."
+	}},
+	{ SCheckBox:{
+		description:"If disabled, the controller bypasses slope generation.", 
+		label:"Enable LED fading",
+		default:1,
+                action:"generic /sys/class/sec/led/led_fade"
+	}},
+	{ SSeekBar:{
+		title:"Fade-in time period",
+		description:"Sets the time period of the rising slope.",
+		max:2000, unit:"ms", step:50,
+		default:300,
+                action:"generic /sys/class/sec/led/led_fade_in_time"
+	}},
+	{ SSeekBar:{
+		title:"Blink retention period",
+		description:"Sets the time period of high retention at maximum PWM level",
+		max:2000, unit:"ms", step:50,
+		default:350,
+                action:"generic /sys/class/sec/led/led_blink_retention"
+	}},
+	{ SSeekBar:{
+		title:"Fade-out time period",
+		description:"Sets the time period of the falling slope.",
+		max:2000, unit:"ms", step:50,
+		default:1300,
+                action:"generic /sys/class/sec/led/led_fade_out_time"
+	}},
+
+
+
+
+	{ SPane:{ 
+		title:"Stock ROM notification",
+		description:"Stock ROM notification controls only apply to the native notification framework, 3rd party apps are not affected."
+	}},
+	{ SSeekBar:{
+		title:"Blink delay period",
+		description:"Sets the time period of low retention at zero PWM level",
+		max:6000, unit:"ms", step:250,
+		default:3250,
+                action:"generic /sys/class/sec/led/led_blink_delay"
+	}},
+	{ SSeekBar:{
+		title:"Red value",
+		max:255, step:2,
+		default:0,
+                action:"generic /sys/class/sec/led/led_noti_r"
+	}},
+	{ SSeekBar:{
+		title:"Green value",
+		max:255, step:2,
+		default:0,
+                action:"generic /sys/class/sec/led/led_noti_g"
+	}},
+	{ SSeekBar:{
+		title:"Blue value",
+		max:255, step:2,
+		default:254,
+                action:"generic /sys/class/sec/led/led_noti_b"
+	}},
+
+	{ SButton:{
+		label:"Apply notification",
+		action:"led 3"
+	}},
+	{ SButton:{
+		label:"Stop notification",
+		action:"led 0"
+	}},
+    ]
+}
+CTAG
