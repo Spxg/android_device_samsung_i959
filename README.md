@@ -8,7 +8,9 @@ device基于GearCM的i9500修改
 
 感谢MorHop的指导
 
+Fix bugs
 源码中system/core/rootdir中的init.rc ueventd.rc两个文件需要修改，device目录下的两个仅供参考
+system/void中的Utils.cpp文件需要修改,device目录下的仅供参考
 
 SCH-I959 KERNEL：https://github.com/Spxg/android_kernel_samsung_exynos5410
 
