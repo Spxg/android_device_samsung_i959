@@ -22,3 +22,5 @@ SCH-I959 VENDOR：https://github.com/Spxg/android_vendor_samsung_i959
 注意事项
 
 lineageos-cm13.0需用openjdk8
+
+下载地址：https://github.com/Spxg/android_device_samsung_i959/releases
