@@ -17,3 +17,7 @@ SCH-I959 KERNEL：https://github.com/Spxg/android_kernel_samsung_exynos5410
 
 SCH-I959 VENDOR：https://github.com/Spxg/android_vendor_samsung_i959
 
+替换framework/base/core/jni/com_android_internal_os_Zygote.cpp，文件在device目录，文件仅供参考
+
+注意事项
+lineageos-cm13.0需用openjdk8
