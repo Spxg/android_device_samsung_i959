@@ -1,14 +1,55 @@
 [
     {
-      "repository": "android_external_stlport",
-      "target_path": "external/stlport"
+      "remote": "github",
+      "repository": "LineageOS/android_external_stlport",
+      "target_path": "external/stlport",
+      "branch": "cm-13.0"
     },
     {
-        "repository": "android_hardware_samsung_slsi-cm_exynos",
-        "target_path": "hardware/samsung_slsi-cm/exynos"
+      "remote": "github",
+      "repository": "LineageOS/android_hardware_samsung_slsi-cm_exynos",
+      "target_path": "hardware/samsung_slsi-cm/exynos",
+      "branch": "cm-13.0"
     },
     {
-        "repository": "android_packages_apps_SamsungServiceMode",
-        "target_path": "packages/apps/SamsungServiceMode"
+      "remote": "github",
+      "repository": "LineageOS/android_packages_apps_SamsungServiceMode",
+      "target_path": "packages/apps/SamsungServiceMode",
+      "branch": "cm-13.0"
+    },
+    {
+      "remote": "github",
+      "repository": "Spxg/android_kernel_samsung_exynos5410",
+      "target_path": "kernel/samsung/exynos5410",
+      "branch": "cm-13.0"
+    },
+    {
+      "remote": "github",
+      "repository": "LineageOS/android_hardware_samsung_slsi-cm_exynos5",
+      "target_path": "hardware/samsung_slsi-cm/exynos5",
+      "branch": "cm-13.0"
+    },
+    {
+      "remote": "github",
+      "repository": "Spxg/android_hardware_samsung_slsi-cm_exynos5410",
+      "target_path": "hardware/samsung_slsi-cm/exynos5410",
+      "branch": "cm-13.0"
+    },
+    {
+      "remote": "github",
+      "repository": "Spxg/android_hardware_samsung",
+      "target_path": "hardware/samsung",
+      "branch": "cm-13.0"
+    },    
+    {
+      "remote": "github",
+      "repository": "LineageOS/android_hardware_samsung_slsi-cm_openmax",
+      "target_path": "hardware/samsung_slsi-cm/openmax",
+      "branch": "cm-13.0"
+    },
+    {
+      "remote": "github",
+      "repository": "Spxg/android_vendor_samsung_i959",
+      "target_path": "vendor/samsung/i959",
+      "branch": "cm13.0"
     }
-]
