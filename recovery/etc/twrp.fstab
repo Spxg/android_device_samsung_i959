@@ -1,13 +1,14 @@
-# mount point 	fstype 		device 													options (length for cryptfs encryption footer)
-/system			ext4		/dev/block/platform/dw_mmc.0/by-name/SYSTEM				flags=display="System"
+# mount point	fstype		device					device2
+/efs			ext4		/dev/block/mmcblk0p3    flags=display="EFS";backup=1
+/efs_gsm                 ext4             /dev/block/mmcblk0p23    flags=display="EFS_GSM";backup=1
+/boot			emmc		/dev/block/mmcblk0p9
+/recovery		emmc		/dev/block/mmcblk0p10
+/cache			ext4		/dev/block/mmcblk0p19
+/system			ext4		/dev/block/mmcblk0p20
+/data			ext4		/dev/block/mmcblk0p21	length=-16384
+/preload		ext4		/dev/block/mmcblk0p16    flags=display="Preload";wipeingui;backup=1
+/modem			emmc		/dev/block/mmcblk0p13
 
-/cache			ext4		/dev/block/platform/dw_mmc.0/by-name/CACHE				flags=display="Cache"
-
-/data			ext4		/dev/block/platform/dw_mmc.0/by-name/USERDATA			length=-16384
-
-/efs			ext4		/dev/block/platform/dw_mmc.0/by-name/EFS				flags=backup=1;display="EFS"
-
-/boot			emmc		/dev/block/platform/dw_mmc.0/by-name/BOOT				
-/recovery		emmc		/dev/block/platform/dw_mmc.0/by-name/RECOVERY			flags=backup=1
-
-/external_sd	vfat		/dev/block/mmcblk1p1 /dev/block/mmcblk1					flags=display="External Storage";storage;wipeingui;removable
+#/sdcard			datamedia   /dev/null
+/external_sd	vfat		/dev/block/mmcblk1p1    /dev/block/mmcblk1   flags=fsflags=utf8;display="Micro SDcard";storage;wipeingui;removable
+/usb-otg         vfat       /dev/block/sda1         /dev/block/sda       flags=fsflags=utf8;display="USB";storage;wipeingui;removable
