@@ -69,10 +69,6 @@ PRODUCT_PACKAGES += \
     charger_res_images \
     cm_charger_res_images
 
-# GearCM
-PRODUCT_PACKAGES += \
-    OTAUpdates
-
 # GPS
 PRODUCT_PACKAGES += \
     libdmitry \
@@ -200,6 +196,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PACKAGES += \
     libsamsung_symbols \
+    libsecril-client \
     libsecril-client-sap \
     SamsungServiceMode \
     modemloader
