@@ -18,5 +18,12 @@ Copyright 2016, The CyanogenMod Project / GearCM
 * 下载地址：https://github.com/Spxg/android_device_samsung_i959/releases
 
 # 截图
-* ![RR](./assets/rr.png)
-  ![RR](./assets/rr2.png)
+* ResurrectionRemix  
+ ![RR](./assets/rr.png)
+ ![RR](./assets/rr2.png)
+
+* Lineageos
+ ![Lineage](./assets/lineageos.png)
+
+* TWRP 3.0.3
+ ![TWRP](./assets/twrp.png)
