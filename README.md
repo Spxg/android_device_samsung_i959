@@ -16,13 +16,3 @@ Copyright 2016, The CyanogenMod Project / GearCM
 # 注意事项
 * lineageos-cm13.0需用openjdk8
 * 下载地址：https://github.com/Spxg/android_device_samsung_i959/releases
-
-# ResurrectionRemix截图
- ![RR](./assets/rr.png)
- ![RR](./assets/rr2.png)
-
-# Lineageos截图
- ![Lineage](./assets/lineageos.png)
-
-# TWRP 3.0.3截图
- ![TWRP](./assets/twrp.png)
