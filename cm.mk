@@ -38,5 +38,3 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE=ja3gduosctc \
     BUILD_FINGERPRINT="samsung/ja3gduosctc/ja3gduosctc:5.0.1/LRX22C/I959KEUJOH4:user/release-keys" \
     PRIVATE_BUILD_DESC="ja3gduosctc-user 5.0.1 LRX22C I959KEUJOH4 release-keys"
-
-TARGET_UNOFFICIAL_BUILD_ID := GearCM
