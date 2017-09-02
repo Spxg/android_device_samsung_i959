@@ -17,3 +17,7 @@ Copyright 2016, The CyanogenMod Project / GearCM
 * lineageos-cm13.0需用openjdk8
 * 下载地址1：https://github.com/Spxg/android_device_samsung_i959/releases
 * 下载地址2：https://cloud.ftdabaobei.cn/?dir=i959
+
+# 6.0.1 bug多，请移步7.1.2
+[manifest](https://github.com/Spxg/manifest)
+[ja3gduosctc_device](https://github.com/Pohrom/android_device_samsung_ja3gduosctc)
